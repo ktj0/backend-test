@@ -1,6 +1,7 @@
 package kr.co.polycube.backendtest.service;
 
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import kr.co.polycube.backendtest.dto.UserIdResponseDto;
 import kr.co.polycube.backendtest.dto.UserRequestDto;
 import kr.co.polycube.backendtest.dto.UserResponseDto;
@@ -25,6 +26,16 @@ public class UserService {
     // user 조회
     public UserResponseDto getUser(Long userId) {
         User user = findUser(userId);
+
+        return new UserResponseDto(user);
+    }
+
+    // user 수정
+    @Transactional
+    public UserResponseDto updateUser(Long userId,
+                                      UserRequestDto requestDto) {
+        User user = findUser(userId);
+        user.update(requestDto);
 
         return new UserResponseDto(user);
     }

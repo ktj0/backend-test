@@ -24,4 +24,11 @@ public class UserController {
     public UserResponseDto getUser(@PathVariable Long id) {
         return userService.getUser(id);
     }
+
+    // user 수정
+    @PutMapping("/users/{id}")
+    public UserResponseDto updateUser(@PathVariable Long id,
+                                      @RequestBody UserRequestDto requestDto) {
+        return userService.updateUser(id, requestDto);
+    }
 }
