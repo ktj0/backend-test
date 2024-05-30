@@ -42,7 +42,7 @@ public class SpecialCharacterFilter implements Filter {
         return SPECIAL_CHAR_PATTERN.matcher(input).find();
     }
 
-    // URI 에 특수문자 입력 시 예외 처리
+    // URL 에 특수문자 입력 시 예외 처리
     private void sendErrorResponse(HttpServletResponse response, String message) throws IOException {
         response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         response.setContentType("application/json");

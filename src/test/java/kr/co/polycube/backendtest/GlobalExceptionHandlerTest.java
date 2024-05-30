@@ -2,7 +2,6 @@ package kr.co.polycube.backendtest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import kr.co.polycube.backendtest.dto.UserRequestDto;
-import kr.co.polycube.backendtest.repository.UserRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +22,6 @@ public class GlobalExceptionHandlerTest {
 
     @Autowired
     private ObjectMapper objectMapper;
-
-    @Autowired
-    private UserRepository userRepository;
 
     @Test
     @DisplayName("잘못된 요청에 대한 예외 처리 통합 테스트")
