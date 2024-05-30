@@ -1,6 +1,7 @@
 package kr.co.polycube.backendtest.entity;
 
 import jakarta.persistence.*;
+import kr.co.polycube.backendtest.dto.LottoRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
