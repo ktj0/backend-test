@@ -29,9 +29,6 @@ public class UserIntegrationTest {
     private ObjectMapper objectMapper;
 
     @Autowired
-    private UserService userService;
-
-    @Autowired
     private UserRepository userRepository;
 
     private User user;
@@ -67,7 +64,7 @@ public class UserIntegrationTest {
     }
 
     @Test
-    @DisplayName("user 수정")
+    @DisplayName("user 수정 통합 테스트")
     void testUpdateUSer() throws Exception {
         UserRequestDto requestDto = new UserRequestDto();
         requestDto.setName("modified user1");
