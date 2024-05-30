@@ -17,7 +17,7 @@ import java.util.Map;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
-    // 잘못된 요청 예외 처리
+    // 잘못된 요청에 대한 예외 처리
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<Map<String, String>> handleBadRequest(Exception ex) {
         Map<String, String> response = new HashMap<>();
@@ -27,7 +27,7 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
-    // 존재하지 않는 API 호출 예외 처리
+    // 존재하지 않는 API 호출에 대한 예외 처리
     @ExceptionHandler(NoHandlerFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ResponseEntity<Map<String, String>> handleNoHandlerFoundException(NoHandlerFoundException ex) {
