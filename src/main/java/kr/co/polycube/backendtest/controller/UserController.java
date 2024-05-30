@@ -10,23 +10,24 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/users")
 public class UserController {
     private final UserService userService;
 
     // user 등록
-    @PostMapping("/users")
+    @PostMapping()
     public UserIdResponseDto createUser(@Valid @RequestBody UserRequestDto requestDto) {
         return userService.createUser(requestDto);
     }
 
     // user 조회
-    @GetMapping("/users/{id}")
+    @GetMapping("/{id}")
     public UserResponseDto getUser(@PathVariable Long id) {
         return userService.getUser(id);
     }
 
     // user 수정
-    @PutMapping("/users/{id}")
+    @PutMapping("/{id}")
     public UserResponseDto updateUser(@PathVariable Long id,
                                       @RequestBody UserRequestDto requestDto) {
         return userService.updateUser(id, requestDto);

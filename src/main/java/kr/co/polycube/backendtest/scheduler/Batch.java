@@ -35,10 +35,10 @@ public class Batch {
         List<Integer> winningNumbers = generateLottoNumbers();
 
         for (Lotto lotto : lottos) {
-            int winningRank = calculateWinningRank(lotto, winningNumbers);
+            int rank = calculateWinningRank(lotto, winningNumbers);
 
-            if (winningRank > 0) {
-                Winner winner = new Winner(lotto, winningRank);
+            if (rank > 0) {
+                Winner winner = new Winner(lotto, rank);
 
                 winnerRepository.save(winner);
             }
@@ -91,8 +91,6 @@ public class Batch {
                 return 4;
             case 2:
                 return 5;
-            case 1:
-                return 6;
             default:
                 return 0;
         }

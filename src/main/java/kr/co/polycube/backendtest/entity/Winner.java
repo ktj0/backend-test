@@ -20,10 +20,10 @@ public class Winner extends Timestamped{
     private Lotto lotto;
 
     @Column(nullable = false)
-    private Integer winningRank;
+    private Integer rank;
 
-    public Winner(Lotto lotto, Integer winningRank) {
+    public Winner(Lotto lotto, Integer rank) {
         this.lotto = lotto;
-        this.winningRank = winningRank;
+        this.rank = rank;
     }
 }
