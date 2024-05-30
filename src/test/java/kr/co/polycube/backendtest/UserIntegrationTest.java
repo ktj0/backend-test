@@ -15,9 +15,9 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -50,8 +50,8 @@ public class UserIntegrationTest {
         mockMvc.perform(post("/users")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(requestDto)))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.id").isNotEmpty())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").isNotEmpty())
                 .andDo(print());
     }
 
@@ -60,8 +60,24 @@ public class UserIntegrationTest {
     void testGetUser() throws Exception {
         mockMvc.perform(get("/users/" + user.getId())
                         .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(user.getId()))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.name").value(user.getName()))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(user.getId()))
+                .andExpect(jsonPath("$.name").value(user.getName()))
+                .andDo(print());
+    }
+
+    @Test
+    @DisplayName("user 수정")
+    void testUpdateUSer() throws Exception {
+        UserRequestDto requestDto = new UserRequestDto();
+        requestDto.setName("modified user1");
+
+        mockMvc.perform(put("/users/" + user.getId())
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(requestDto)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(user.getId()))
+                .andExpect(jsonPath("$.name").value(requestDto.getName()))
                 .andDo(print());
     }
 }
